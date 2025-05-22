@@ -3,6 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <title>Loading…</title>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/examples/": "https://unpkg.com/three@0.160.0/examples/"
+    }
+  }
+</script>
   <link rel="stylesheet" href="/global.css" />
   <script type="module" src="/post-init.js"></script>
   <style>
@@ -20,9 +28,9 @@
   </main>
   <site-footer></site-footer>
 
-  <script>
-    import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
-    import { GPUComputationRenderer } from 'https://unpkg.com/three@0.160.0/examples/jsm/misc/GPUComputationRenderer.js';
+  <script type="module">
+    import * as THREE from 'three';
+    import { GPUComputationRenderer } from 'three/examples/jsm/misc/GPUComputationRenderer.js';
 
     const size = 128;
     const canvas = document.getElementById('life-canvas');
