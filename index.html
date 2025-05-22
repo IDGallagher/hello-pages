@@ -5,73 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IGProjects</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', Arial, Helvetica, sans-serif;
-            line-height: 1.4;
-        }
-        header {
-            background: #ff385c;
-            color: white;
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-        .search-bar {
-            flex: 1;
-            margin-left: 2rem;
-        }
-        input[type="search"] {
-            width: 100%;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 20px;
-        }
-        .hero {
-            background: url("https://picsum.photos/seed/hero/1600/600") center/cover no-repeat;
-            color: white;
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            padding: 2rem;
-        }
-        .card {
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px 8px 0 0;
-        }
-        .card-body {
-            padding: 0.5rem;
-        }
-        .card-body h3 {
-            font-size: 1rem;
-            margin: 0;
-        }
-        .card-body p {
-            font-size: 0.875rem;
-            margin: 0.25rem 0 0;
-        }
-        footer {
-            padding: 2rem;
-            text-align: center;
-            background: #f7f7f7;
-        }
-    </style>
+    <link rel="stylesheet" href="/global.css">
 </head>
 <body>
     <header>
@@ -84,73 +18,10 @@
         <h1>Welcome to IGProjects</h1>
         <p>Exploring AI and Arts Technology demos.</p>
     </section>
-    <section class="cards">
-        <div class="card">
-            <img src="https://picsum.photos/seed/cabin/400/300" alt="Cozy cabin">
-            <div class="card-body">
-                <h3>Cozy Cabin</h3>
-                <p>Mountain view retreat</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://picsum.photos/seed/city/400/300" alt="City apartment">
-            <div class="card-body">
-                <h3>City Apartment</h3>
-                <p>Heart of downtown</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://picsum.photos/seed/beach/400/300" alt="Beach bungalow">
-            <div class="card-body">
-                <h3>Beach Bungalow</h3>
-                <p>Steps from the ocean</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://picsum.photos/seed/aiart/400/300" alt="AI Art Generator">
-            <div class="card-body">
-                <h3>AI Art Generator</h3>
-                <p>Creating images from code</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://picsum.photos/seed/music/400/300" alt="Music Maker">
-            <div class="card-body">
-                <h3>ML Music Maker</h3>
-                <p>Generative tunes</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://picsum.photos/seed/vr/400/300" alt="VR Gallery">
-            <div class="card-body">
-                <h3>VR Gallery</h3>
-                <p>Immersive art space</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://picsum.photos/seed/robot/400/300" alt="Robotics Demo">
-            <div class="card-body">
-                <h3>Robotics Demo</h3>
-                <p>Interactive machines</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://picsum.photos/seed/install/400/300" alt="Interactive Installation">
-            <div class="card-body">
-                <h3>Interactive Installation</h3>
-                <p>Hands-on tech art</p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://picsum.photos/seed/data/400/300" alt="Data Visualization">
-            <div class="card-body">
-                <h3>Data Visualization</h3>
-                <p>Insights in motion</p>
-            </div>
-        </div>
-    </section>
+    <section class="cards" id="card-grid"></section>
     <footer>
         &copy; 2023 IGProjects. Demo content only.
     </footer>
+    <script type="module" src="/index.js"></script>
 </body>
 </html>
