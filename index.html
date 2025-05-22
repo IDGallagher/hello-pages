@@ -1,6 +1,156 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <meta charset="utf-8">
-  <title>Open A 👁️ into the world</title>
-  <h1>Hello World 🎉</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Rentals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        header {
+            background: #ff385c;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .search-bar {
+            flex: 1;
+            margin-left: 2rem;
+        }
+        input[type="search"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+        }
+        .hero {
+            background: url("https://picsum.photos/seed/hero/1600/600") center/cover no-repeat;
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-auto-rows: 350px;
+            gap: 1rem;
+            padding: 2rem;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .card img {
+            width: 100%;
+            height: 60%;
+            object-fit: cover;
+        }
+        .card-body {
+            flex: 1;
+            border-radius: 0 0 12px 12px;
+            padding: 0.75rem;
+            font-size: 0.85rem;
+        }
+        footer {
+            padding: 2rem;
+            text-align: center;
+            background: #f7f7f7;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">StayBnB</div>
+        <div class="search-bar">
+            <input type="search" placeholder="Search destinations" />
+        </div>
+    </header>
+    <section class="hero">
+        <h1>Find your next getaway</h1>
+        <p>Explore places to stay around the world with our easy search.</p>
+    </section>
+    <section class="cards">
+        <div class="card">
+            <img src="https://picsum.photos/seed/cabin/400/300" alt="Cozy cabin">
+            <div class="card-body">
+                <h3>Cozy Cabin</h3>
+                <p>Mountain view retreat</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/seed/city/400/300" alt="City apartment">
+            <div class="card-body">
+                <h3>City Apartment</h3>
+                <p>Heart of downtown</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/seed/beach/400/300" alt="Beach bungalow">
+            <div class="card-body">
+                <h3>Beach Bungalow</h3>
+                <p>Steps from the ocean</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/seed/loft/400/300" alt="Modern loft">
+            <div class="card-body">
+                <h3>Modern Loft</h3>
+                <p>Open concept living</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/seed/villa/400/300" alt="Luxury villa">
+            <div class="card-body">
+                <h3>Luxury Villa</h3>
+                <p>Private pool</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/seed/houseboat/400/300" alt="Houseboat">
+            <div class="card-body">
+                <h3>Houseboat</h3>
+                <p>Stay on the water</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/seed/cottage/400/300" alt="Country cottage">
+            <div class="card-body">
+                <h3>Country Cottage</h3>
+                <p>Quiet countryside</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/seed/studio/400/300" alt="Studio flat">
+            <div class="card-body">
+                <h3>Studio Flat</h3>
+                <p>Compact and comfy</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/seed/barn/400/300" alt="Converted barn">
+            <div class="card-body">
+                <h3>Converted Barn</h3>
+                <p>Rustic charm</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        &copy; 2023 StayBnB. Placeholder content for demo purposes.
+    </footer>
+</body>
 </html>
