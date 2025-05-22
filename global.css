@@ -27,7 +27,7 @@ input[type="search"] {
 }
 .hero {
     background: url("https://picsum.photos/seed/hero/1600/600") center/cover no-repeat;
-    color: white;
+    color: black;
     padding: 6rem 2rem;
     text-align: center;
 }
