@@ -42,6 +42,9 @@ input[type="search"] {
     overflow: hidden;
     text-decoration: none;
     color: inherit;
+    max-width: 350px;
+    width: 100%;
+    margin: 0 auto;
 }
 .card img {
     width: 100%;
