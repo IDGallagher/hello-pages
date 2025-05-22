@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Loading…</title>
+  <link rel="stylesheet" href="/global.css" />
+  <script type="module" src="/post-init.js"></script>
+</head>
+
+<body>
+  <site-header brand="My Blog" sticky></site-header>
+  <post-hero></post-hero>
+
+  <main style="max-width:60ch;margin:2rem auto;padding:0 1rem;font-size:1.1rem;line-height:1.6;">
+    <p>Today we explore how an LLM-powered script can create striking images on
+       demand, then commit them straight to this repo so Cloudflare Pages deploys
+       them automatically.</p>
+
+    <h2>The workflow</h2>
+    <ul>
+      <li>Prompt sent to the image API (e.g. DALL-E 3).</li>
+      <li>Result saved as <code>cover.jpg</code> inside the post folder.</li>
+      <li>Metadata appended to <code>posts.json</code>.</li>
+      <li>CI push triggers a new Pages deployment.</li>
+    </ul>
+
+    <p>The whole loop finishes in under a minute—global CDN included.</p>
+  </main>
+</body>
+</html>
