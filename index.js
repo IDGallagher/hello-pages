@@ -11,12 +11,34 @@ let page = 0, posts = [];
     console.error("posts.json is not an array"); return;
   }
   renderPage();
+  const search = document.querySelector('.search-bar input[type="search"]');
+  if (search) {
+    search.addEventListener('input', handleSearch);
+    if (search.value) search.dispatchEvent(new Event('input'));
+  }
 })();
 
 function renderPage() {
   const slice = posts.slice(page * PAGE_SIZE, ++page * PAGE_SIZE);
   const grid  = document.getElementById("card-grid");
   slice.forEach(p => grid.append(makeCard(p)));
+}
+
+function handleSearch(e) {
+  const query = e.target.value.trim().toLowerCase();
+  const grid = document.getElementById('card-grid');
+  grid.innerHTML = '';
+  if (query) {
+    const filtered = posts.filter(p =>
+      (p.title && p.title.toLowerCase().includes(query)) ||
+      (p.subtitle && p.subtitle.toLowerCase().includes(query)) ||
+      (Array.isArray(p.tags) && p.tags.join(' ').toLowerCase().includes(query))
+    );
+    filtered.forEach(p => grid.append(makeCard(p)));
+  } else {
+    page = 0;
+    renderPage();
+  }
 }
 
 function makeCard({ slug, title, subtitle, cover }) {
