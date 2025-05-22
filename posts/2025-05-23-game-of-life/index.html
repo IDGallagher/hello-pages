@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Loading…</title>
+  <link rel="stylesheet" href="/global.css" />
+  <script type="module" src="/post-init.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/examples/": "https://unpkg.com/three@0.160.0/examples/"
+      }
+    }
+  </script>
+  <script type="module" src="/components/site-header.js"></script>
+  <script type="module" src="/components/post-hero.js"></script>
+  <script type="module" src="/components/site-footer.js"></script>
+  <style>
+    #life-canvas { width: 500px; height: 500px; display:block; margin:1rem auto; }
+  </style>
+</head>
+
+<body>
+  <site-header brand="My Blog" sticky></site-header>
+  <post-hero></post-hero>
+
+  <main class="post-main">
+    <p>A simple demo of Conway's Game of Life rendered with three.js.</p>
+    <canvas id="life-canvas"></canvas>
+  </main>
+  <site-footer></site-footer>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { GPUComputationRenderer } from 'three/examples/jsm/misc/GPUComputationRenderer.js';
+
+    const size = 128;
+    const canvas = document.getElementById('life-canvas');
+    const renderer = new THREE.WebGLRenderer({ canvas });
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-size / 2, size / 2, size / 2, -size / 2, 0.1, 10);
+    camera.position.z = 5;
+
+    const gpu = new GPUComputationRenderer(size, size, renderer);
+
+    const dt = gpu.createTexture();
+    const data = dt.image.data;
+    for (let i = 0; i < data.length; i += 4) {
+      data[i] = Math.random() > 0.7 ? 255 : 0;
+      data[i + 1] = 0;
+      data[i + 2] = 0;
+      data[i + 3] = 255;
+    }
+
+    const fragmentShader = /* glsl */`
+uniform vec2 resolution;
+
+void main() {
+    float state = texture( textureState, vUv ).r;
+
+    float alive = 0.0;
+    // Count the 8 neighbours
+    for ( int j = -1; j <= 1; ++j ) {
+        for ( int i = -1; i <= 1; ++i ) {
+            if ( i == 0 && j == 0 ) continue;
+            vec2 offs = vec2( float( i ), float( j ) ) / resolution;
+            alive += texture( textureState, vUv + offs ).r;
+        }
+    }
+
+    float next = 0.0;
+    if ( alive == 3.0 || ( state > 0.5 && alive == 2.0 ) ) {
+        next = 1.0;
+    }
+
+    fragColor = vec4( next, 0.0, 0.0, 1.0 );
+}`;
+
+    const lifeVar = gpu.addVariable('textureState', fragmentShader, dt);
+    gpu.setVariableDependencies(lifeVar, [lifeVar]);
+    lifeVar.material.uniforms.resolution = { value: new THREE.Vector2(size, size) };
+
+    const error = gpu.init();
+    if (error) console.error(error);
+
+    const plane = new THREE.Mesh(
+      new THREE.PlaneGeometry(size, size),
+      new THREE.MeshBasicMaterial({ map: gpu.getCurrentRenderTarget(lifeVar).texture })
+    );
+    scene.add(plane);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      gpu.compute();
+      plane.material.map = gpu.getCurrentRenderTarget(lifeVar).texture;
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>
