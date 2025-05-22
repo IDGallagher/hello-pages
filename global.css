@@ -2,10 +2,12 @@ body {
     margin: 0;
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
     line-height: 1.4;
+    background: #000;
+    color: #fff;
 }
 header {
-    background: #ff385c;
-    color: black;
+    background: #000;
+    color: #fff;
     padding: 1rem;
     display: flex;
     align-items: center;
@@ -22,12 +24,14 @@ header {
 input[type="search"] {
     width: 100%;
     padding: 0.5rem 1rem;
-    border: none;
+    border: 1px solid #fff;
     border-radius: 20px;
+    background: #000;
+    color: #fff;
 }
 .hero {
-    background: url("https://picsum.photos/seed/hero/1600/600") center/cover no-repeat;
-    color: black;
+    background: #000;
+    color: #fff;
     padding: 6rem 2rem;
     text-align: center;
 }
@@ -45,6 +49,8 @@ input[type="search"] {
     max-width: 350px;
     width: 100%;
     margin: 0 auto;
+    background: #000;
+    color: #fff;
 }
 .card img {
     width: 100%;
@@ -58,7 +64,7 @@ input[type="search"] {
 .card-body h3 {
     font-size: 1rem;
     margin: 0;
-    color: #000;
+    color: #fff;
 }
 .card-body p {
     font-size: 0.875rem;
@@ -67,5 +73,41 @@ input[type="search"] {
 footer {
     padding: 2rem;
     text-align: center;
-    background: #f7f7f7;
+    background: #000;
+    color: #fff;
+}
+
+.post-hero {
+    position: relative;
+    padding: 4rem 1rem;
+    text-align: center;
+    color: #fff;
+}
+
+.post-hero img.cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.post-main {
+    max-width: 60ch;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.full-width {
+    width: 100%;
+}
+
+youtube-embed iframe.youtube-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
 }

@@ -11,11 +11,11 @@ customElements.define("post-hero", class extends HTMLElement {
     const date = this.getAttribute("date") ?? m.date;
 
     this.innerHTML = `
-      <section class="post-hero"
-               style="background-image:url('${cover}'); padding:4rem 1rem; color:black; background-size:cover; background-position:center;">
-        <h1 style="margin:0 0 .5rem; font-size:2.5rem;">${title}</h1>
-        ${subtitle ? `<p style="margin:0 0 .5rem; font-size:1.25rem;">${subtitle}</p>` : ""}
-        ${date ? `<time style="opacity:.8;">${date}</time>` : ""}
+      <section class="post-hero">
+        <img class="cover" src="${cover}" alt="">
+        <h1>${title}</h1>
+        ${subtitle ? `<p>${subtitle}</p>` : ""}
+        ${date ? `<time>${date}</time>` : ""}
       </section>`;
   }
 });
