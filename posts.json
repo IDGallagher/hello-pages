@@ -1,5 +1,13 @@
 [
   {
+    "slug": "2025-05-23-game-of-life",
+    "title": "Conway's Game of Life",
+    "subtitle": "Cellular automation in 3D",
+    "cover": "https://picsum.photos/seed/gameoflife/400/300",
+    "date": "2025-05-23",
+    "tags": ["demo", "three.js"]
+  },
+  {
     "slug": "2025-05-22-hello",
     "title": "Hello World",
     "subtitle": "Kicking off the blog",
