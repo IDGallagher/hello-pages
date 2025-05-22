@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    line-height: 1.4;
+}
+header {
+    background: #ff385c;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.search-bar {
+    flex: 1;
+    margin-left: 2rem;
+}
+input[type="search"] {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+}
+.hero {
+    background: url("https://picsum.photos/seed/hero/1600/600") center/cover no-repeat;
+    color: white;
+    padding: 6rem 2rem;
+    text-align: center;
+}
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+}
+.card {
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+}
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+.card-body {
+    padding: 0.5rem;
+}
+.card-body h3 {
+    font-size: 1rem;
+    margin: 0;
+    color: #000;
+}
+.card-body p {
+    font-size: 0.875rem;
+    margin: 0.25rem 0 0;
+}
+footer {
+    padding: 2rem;
+    text-align: center;
+    background: #f7f7f7;
+}

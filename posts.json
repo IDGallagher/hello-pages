@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "2025-05-22-hello",
+    "title": "Hello World",
+    "subtitle": "Kicking off the blog",
+    "cover": "https://picsum.photos/seed/hello/400/300",
+    "date": "2025-05-22",
+    "tags": ["intro", "meta"]
+  },
+  {
+    "slug": "2025-05-20-ai-art",
+    "title": "AI Art Generator",
+    "subtitle": "Creating images from code",
+    "cover": "https://picsum.photos/seed/aiart/400/300",
+    "date": "2025-05-20",
+    "tags": ["ai", "art"]
+  },
+  {
+    "slug": "2025-05-18-ml-music",
+    "title": "ML Music Maker",
+    "subtitle": "Generative tunes",
+    "cover": "https://picsum.photos/seed/music/400/300",
+    "date": "2025-05-18",
+    "tags": ["music", "ml"]
+  },
+  {
+    "slug": "2025-05-16-robot-arm",
+    "title": "Robot Arm",
+    "subtitle": "Sorting blocks with JS",
+    "cover": "https://picsum.photos/seed/robot/400/300",
+    "date": "2025-05-16",
+    "tags": ["hardware", "robotics"]
+  },
+  {
+    "slug": "2025-05-14-vr-art",
+    "title": "VR Art Gallery",
+    "subtitle": "Immersive painting display",
+    "cover": "https://picsum.photos/seed/vrart/400/300",
+    "date": "2025-05-14",
+    "tags": ["vr", "art"]
+  },
+  {
+    "slug": "2025-05-12-data-viz",
+    "title": "Data Viz Dash",
+    "subtitle": "Real-time charts with serverless",
+    "cover": "https://picsum.photos/seed/dataviz/400/300",
+    "date": "2025-05-12",
+    "tags": ["data", "visualization"]
+  }
+]
