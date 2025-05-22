@@ -12,7 +12,7 @@ customElements.define("post-hero", class extends HTMLElement {
 
     this.innerHTML = `
       <section class="post-hero"
-               style="background-image:url('${cover}'); padding:4rem 1rem; color:white; background-size:cover; background-position:center;">
+               style="background-image:url('${cover}'); padding:4rem 1rem; color:black; background-size:cover; background-position:center;">
         <h1 style="margin:0 0 .5rem; font-size:2.5rem;">${title}</h1>
         ${subtitle ? `<p style="margin:0 0 .5rem; font-size:1.25rem;">${subtitle}</p>` : ""}
         ${date ? `<time style="opacity:.8;">${date}</time>` : ""}
