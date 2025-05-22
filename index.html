@@ -1,6 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <meta charset="utf-8">
-  <title>Open A 👁️ into the world</title>
-  <h1>Hello World 🎉</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Rentals</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+        header {
+            background: #ff385c;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .search-bar {
+            flex: 1;
+            margin-left: 2rem;
+        }
+        input[type="search"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 2px;
+        }
+        .hero {
+            background: url("https://picsum.photos/seed/hero/1600/600") center/cover no-repeat;
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            padding: 2rem;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 0;
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .card-body {
+            padding: 0 1rem 1rem;
+        }
+        .card-body h3,
+        .card-body p {
+            margin: 0;
+        }
+        footer {
+            padding: 2rem;
+            text-align: center;
+            background: #f7f7f7;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">StayBnB</div>
+        <div class="search-bar">
+            <input type="search" placeholder="Search destinations" />
+        </div>
+    </header>
+    <section class="hero">
+        <h1>Find your next getaway</h1>
+        <p>Explore places to stay around the world with our easy search.</p>
+    </section>
+    <section class="cards">
+        <div class="card">
+            <img src="https://picsum.photos/seed/cabin/400/300" alt="Cozy cabin">
+            <div class="card-body">
+                <h3>Cozy Cabin</h3>
+                <p>Mountain view retreat</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/seed/city/400/300" alt="City apartment">
+            <div class="card-body">
+                <h3>City Apartment</h3>
+                <p>Heart of downtown</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/seed/beach/400/300" alt="Beach bungalow">
+            <div class="card-body">
+                <h3>Beach Bungalow</h3>
+                <p>Steps from the ocean</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        &copy; 2023 StayBnB. Placeholder content for demo purposes.
+    </footer>
+</body>
 </html>
