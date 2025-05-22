@@ -56,26 +56,34 @@
     }
 
     const fragmentShader = /* glsl */`
+
+out vec4 fragColor;          // Declare the single output target
+
 void main() {
-    float state = texture( textureState, vUv ).r;
 
-    float alive = 0.0;
-    // Count the 8 neighbours
-    for ( int j = -1; j <= 1; ++j ) {
-        for ( int i = -1; i <= 1; ++i ) {
-            if ( i == 0 && j == 0 ) continue;
-            vec2 offs = vec2( float( i ), float( j ) ) / resolution;
-            alive += texture( textureState, vUv + offs ).r;
-        }
+  // Normalised texture coordinates for this fragment
+  vec2 uv = gl_FragCoord.xy / resolution;
+
+  // Current cell state
+  float state = texture( textureState, uv ).r;
+
+  // Count live neighbours (8-connected)
+  float alive = 0.0;
+  for ( int j = -1; j <= 1; ++j ) {
+    for ( int i = -1; i <= 1; ++i ) {
+      if ( i == 0 && j == 0 ) continue;
+      vec2 offs      = vec2( float( i ), float( j ) );
+      vec2 neighbour = ( gl_FragCoord.xy + offs ) / resolution;
+      alive += texture( textureState, neighbour ).r;
     }
+  }
 
-    float next = 0.0;
-    if ( alive == 3.0 || ( state > 0.5 && alive == 2.0 ) ) {
-        next = 1.0;
-    }
+  // Conway’s rules
+  float next = ( alive == 3.0 || ( state > 0.5 && alive == 2.0 ) ) ? 1.0 : 0.0;
 
-    fragColor = vec4( next, 0.0, 0.0, 1.0 );
-}`;
+  fragColor = vec4( next, 0.0, 0.0, 1.0 );
+}
+`;
 
     const lifeVar = gpu.addVariable('textureState', fragmentShader, dt);
     gpu.setVariableDependencies(lifeVar, [lifeVar]);
