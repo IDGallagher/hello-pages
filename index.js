@@ -41,13 +41,14 @@ function handleSearch(e) {
   }
 }
 
-function makeCard({ slug, title, subtitle, cover }) {
+function makeCard({ slug, title, subtitle, cover, date }) {
   const a = document.createElement("a");
   a.href  = `/posts/${slug}/`;
   a.className = "card";
   a.innerHTML = `
       <img src="${cover}" alt="${title}">
       <div class="card-body">
+        <p class="date">${new Date(date).toLocaleDateString()}</p>
         <h3>${title}</h3>
         <p>${subtitle}</p>
       </div>`;

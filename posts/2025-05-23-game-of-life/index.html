@@ -13,98 +13,155 @@
       }
     }
   </script>
-  <script type="module" src="/components/site-header.js"></script>
-  <script type="module" src="/components/post-hero.js"></script>
-  <script type="module" src="/components/site-footer.js"></script>
-  <style>
-    #life-canvas { width: 500px; height: 500px; display:block; margin:1rem auto; }
-  </style>
 </head>
 
 <body>
   <site-header brand="My Blog" sticky></site-header>
-  <post-hero></post-hero>
 
-  <main class="post-main">
-    <p>A simple demo of Conway's Game of Life rendered with three.js.</p>
-    <canvas id="life-canvas"></canvas>
-  </main>
+  <div class="page-info-panel">
+    <p>This is a first attempt at a simulation using compute shaders and Three.js. It's a simple implementation of Conway's Game of Life. <br/>The simulation is rendered to a texture, which is then used as a source for the display shader. 
+    <br/>This is almost entirely vibe coded with Cursor and Codex.</p>
+    <p>Zoom with the mouse wheel, and click and drag to move around.</p>
+  </div>
+
+  <div id="controls-panel">
+    <button id="toggle-info-button">Toggle Info</button>
+    <button id="reset-button">Reset</button>
+    <label for="size-input">Grid Size:</label>
+    <input type="number" id="size-input" value="1024" min="16" step="16">
+    <button id="apply-size-button">Apply Size</button>
+    <label for="speed-slider">Speed:</label>
+    <input type="range" id="speed-slider" min="0" max="20" value="10" step="1">
+    <span id="speed-display">1.0x</span>
+  </div>
+
+  <canvas id="life-canvas"></canvas>
   <site-footer></site-footer>
 
   <script type="module">
+    import { 
+      initSimulationEngine,
+      resetSimulation,        // NEW import
+      setSimulationGridSize,  // NEW import
+      setSimulationSpeed      // NEW import
+    } from './gpgpu-simulation-engine.js';
     import * as THREE from 'three';
-    import { GPUComputationRenderer } from 'three/examples/jsm/misc/GPUComputationRenderer.js';
 
-    const size = 128;
-    const canvas = document.getElementById('life-canvas');
-    const renderer = new THREE.WebGLRenderer({ canvas });
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-size / 2, size / 2, size / 2, -size / 2, 0.1, 10);
-    camera.position.z = 5;
-
-    const gpu = new GPUComputationRenderer(size, size, renderer);
-
-    const dt = gpu.createTexture();
-    const data = dt.image.data;
-    for (let i = 0; i < data.length; i += 4) {
-      data[i] = Math.random() > 0.7 ? 255 : 0;
-      data[i + 1] = 0;
-      data[i + 2] = 0;
-      data[i + 3] = 255;
+    // Simulation-specific data initialization for Conway's Game of Life
+    // This function is passed to the engine.
+    // The engine provides the gpuRendererInstance (a GPUComputationRenderer) for texture creation.
+    function initializeConwayData(simWidth, simHeight /*, gpuRendererInstance - no longer used directly for THIS texture */) {
+      const size = simWidth * simHeight;
+      // Data for a single channel (Red) 8-bit texture
+      const dataArray = new Uint8Array(size);
+      for (let i = 0; i < size; i++) {
+        // Store 255 for alive (will be 1.0 in shader), 0 for dead (0.0 in shader)
+        dataArray[i] = Math.random() > 0.7 ? 255 : 0;
+      }
+      // THREE.DataTexture(data, width, height, format, type)
+      const initialTexture = new THREE.DataTexture(dataArray, simWidth, simHeight, THREE.RedFormat, THREE.UnsignedByteType);
+      initialTexture.needsUpdate = true; // Crucial for DataTexture
+      return initialTexture;
     }
 
-    const fragmentShader = /* glsl */`
+    // Initial configuration for the simulation to run
+    let currentSimGridSize = 1024; // Default, matches input field
+    const simulationConfig = {
+      canvasId: 'life-canvas',
+      initialComputeShaderPath: './life.glsl',
+      initialDataFunction: initializeConwayData,
+      initialDisplayShaderPath: './display.glsl',
+      simulationGridWidth: currentSimGridSize,
+      simulationGridHeight: currentSimGridSize,
+    };
 
-out vec4 fragColor;          // Declare the single output target
+    initSimulationEngine(simulationConfig);
 
-void main() {
+    // UI Controls Logic
+    const resetButton = document.getElementById('reset-button');
+    const sizeInput = document.getElementById('size-input');
+    const applySizeButton = document.getElementById('apply-size-button');
+    const speedSlider = document.getElementById('speed-slider');
+    const speedDisplay = document.getElementById('speed-display');
 
-  // Normalised texture coordinates for this fragment
-  vec2 uv = gl_FragCoord.xy / resolution;
+    sizeInput.value = currentSimGridSize;
 
-  // Current cell state
-  float state = texture( textureState, uv ).r;
+    resetButton.addEventListener('click', () => {
+      if (resetSimulation) resetSimulation();
+    });
 
-  // Count live neighbours (8-connected)
-  float alive = 0.0;
-  for ( int j = -1; j <= 1; ++j ) {
-    for ( int i = -1; i <= 1; ++i ) {
-      if ( i == 0 && j == 0 ) continue;
-      vec2 offs      = vec2( float( i ), float( j ) );
-      vec2 neighbour = ( gl_FragCoord.xy + offs ) / resolution;
-      alive += texture( textureState, neighbour ).r;
+    applySizeButton.addEventListener('click', () => {
+      const newSize = parseInt(sizeInput.value, 10);
+      if (!isNaN(newSize) && newSize >= 16) { 
+        currentSimGridSize = newSize;
+        if (setSimulationGridSize) setSimulationGridSize(newSize);
+      } else {
+        alert('Please enter a valid size (must be 16 or greater).');
+        sizeInput.value = currentSimGridSize; // Reset to current valid size
+      }
+    });
+
+    speedSlider.addEventListener('input', (event) => {
+      const sliderValue = parseInt(event.target.value, 10);
+      if (setSimulationSpeed) setSimulationSpeed(sliderValue);
+
+      // Update speed display
+      if (sliderValue === 0) {
+        speedDisplay.textContent = 'Paused';
+      } else if (sliderValue < 10) {
+        // Reflect the new non-linear mapping from the engine
+        const slowLevel = 10 - sliderValue; // Ranges 1 (slider 9) to 9 (slider 1)
+        let actualFramesPerStep;
+        switch (slowLevel) {
+          case 1: actualFramesPerStep = 2; break;
+          case 2: actualFramesPerStep = 3; break;
+          case 3: actualFramesPerStep = 4; break;
+          case 4: actualFramesPerStep = 6; break;
+          case 5: actualFramesPerStep = 8; break;
+          case 6: actualFramesPerStep = 12; break;
+          case 7: actualFramesPerStep = 16; break;
+          case 8: actualFramesPerStep = 24; break;
+          case 9: actualFramesPerStep = 30; break;
+          default: actualFramesPerStep = 1;
+        }
+        speedDisplay.textContent = `1/${actualFramesPerStep}x`;
+      } else if (sliderValue === 10) {
+        speedDisplay.textContent = '1.0x';
+      } else {
+        // Faster speeds: (sliderValue - 9) steps per frame
+        speedDisplay.textContent = `${sliderValue - 9}.0x`;
+      }
+    });
+
+    // Example of how you might switch simulations later is removed for brevity
+
+    // Logic for page-info-panel visibility
+    const pageInfoPanel = document.querySelector('.page-info-panel');
+    const toggleInfoButton = document.getElementById('toggle-info-button');
+
+    if (pageInfoPanel && toggleInfoButton) {
+      // Initially visible, or set to 'block' if you prefer to control via JS
+      // pageInfoPanel.style.display = 'block'; 
+
+      toggleInfoButton.addEventListener('click', function() {
+        if (pageInfoPanel.style.display === 'none') {
+          pageInfoPanel.style.display = 'block';
+        } else {
+          pageInfoPanel.style.display = 'none';
+        }
+      });
+
+      document.addEventListener('click', function(event) {
+        if (pageInfoPanel.style.display !== 'none') { // Only act if panel is visible
+          const isClickInsidePanel = pageInfoPanel.contains(event.target);
+          const isClickOnToggleButton = toggleInfoButton.contains(event.target);
+          
+          if (!isClickInsidePanel && !isClickOnToggleButton) {
+            pageInfoPanel.style.display = 'none';
+          }
+        }
+      });
     }
-  }
-
-  // Conway’s rules
-  float next = ( alive == 3.0 || ( state > 0.5 && alive == 2.0 ) ) ? 1.0 : 0.0;
-
-  fragColor = vec4( next, 0.0, 0.0, 1.0 );
-}
-`;
-
-    const lifeVar = gpu.addVariable('textureState', fragmentShader, dt);
-    gpu.setVariableDependencies(lifeVar, [lifeVar]);
-    lifeVar.material.uniforms.resolution = { value: new THREE.Vector2(size, size) };
-
-    const error = gpu.init();
-    if (error) console.error(error);
-
-    const plane = new THREE.Mesh(
-      new THREE.PlaneGeometry(size, size),
-      new THREE.MeshBasicMaterial({ map: gpu.getCurrentRenderTarget(lifeVar).texture })
-    );
-    scene.add(plane);
-
-    function animate() {
-      requestAnimationFrame(animate);
-      gpu.compute();
-      plane.material.map = gpu.getCurrentRenderTarget(lifeVar).texture;
-      renderer.render(scene, camera);
-    }
-    animate();
   </script>
 </body>
 </html>
