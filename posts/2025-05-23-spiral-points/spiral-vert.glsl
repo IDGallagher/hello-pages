@@ -27,8 +27,6 @@ void main() {
   pos.z = 0.0;
 
   gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
-
-  gl_PointSize = u_pointSize / gl_Position.w;
-
+  gl_PointSize = u_pointSize;
   v_alpha = smoothstep(1.2, 0.0, length(pos.xy));
 } 

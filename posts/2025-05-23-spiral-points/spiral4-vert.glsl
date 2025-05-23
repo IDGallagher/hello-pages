@@ -29,6 +29,6 @@ void main() {
   vec2 posXY = (vec2(px, py) - CENTER) * SCALE;
 
   gl_Position  = projectionMatrix * modelViewMatrix * vec4(posXY, 0.0, 1.0);
-  gl_PointSize = u_pointSize / gl_Position.w;
+  gl_PointSize = u_pointSize;
   v_alpha      = smoothstep(1.2, 0.0, length(posXY));
 } 

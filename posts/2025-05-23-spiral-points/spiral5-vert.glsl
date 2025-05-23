@@ -29,7 +29,9 @@ void main() {
 
   pos.xy *= SCALE;
 
-  gl_Position  = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
-  gl_PointSize = u_pointSize / gl_Position.w;
-  v_alpha      = smoothstep(1.2, 0.0, length(pos.xy));
+  vec2 posXY = pos.xy;
+
+  gl_Position  = projectionMatrix * modelViewMatrix * vec4(posXY, 0.0, 1.0);
+  gl_PointSize = u_pointSize;              // constant screen-space size
+  v_alpha      = smoothstep(1.2, 0.0, length(posXY));
 } 

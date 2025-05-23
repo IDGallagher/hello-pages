@@ -18,10 +18,10 @@ export async function initSpiralPoints () {
   /* ---------- scene & camera ---------- */
   const scene  = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-  camera.position.z = 4;
+  camera.position.z = 3;
 
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableRotate       = false;
+  controls.enableRotate       = true;
   controls.screenSpacePanning = true;
   controls.enableDamping      = true;
   controls.dampingFactor      = 0.05;
@@ -62,6 +62,9 @@ export async function initSpiralPoints () {
       },
       vertexShader  : vertSrc,
       fragmentShader: fragSrc,
+      blending      : THREE.AdditiveBlending,
+      depthWrite    : false,
+      depthTest     : false,
       transparent   : true
     });
 
