@@ -139,16 +139,6 @@ body {
   /* overflow: hidden; MOVED */ /* Assuming this is covered by global, if not uncomment */
 }
 
-#life-canvas {
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
 site-footer { /* Styles for the custom site-footer element, originally from game-of-life page */
   position: fixed;
   bottom: 0;
@@ -224,4 +214,19 @@ site-footer { /* Styles for the custom site-footer element, originally from game
 
 .page-info-panel p {
   margin-top: 0; /* Remove default top margin from paragraph if it's the only child */
+}
+
+/* Styles for full-viewport canvases (replaces #spiral-canvas and #life-canvas) */
+.full-viewport-canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.spiral-specific-info-panel {
+  pointer-events: none;
 }
