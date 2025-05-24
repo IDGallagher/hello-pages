@@ -6,22 +6,26 @@
     <title>IGProjects</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/global.css" />
+    <script type="module" src="/post-init.js"></script>
 </head>
 <body>
-    <header>
-        <div class="logo">IGProjects</div>
-        <div class="search-bar">
-            <input type="search" placeholder="Search projects" />
+    <site-header sticky></site-header>
+    <div class="front-page-container">
+        <div class="intro-text">
+            <p>This is a kind of development diary for Lost Communications. Welcome!</p>
+            <p>In it I'll throw in random thoughts and snippets of things.</p>
+            <p>We're building a new show: Lost Communications Underwater - based on our underwater explorations. Its going to feature evolving life and have an online world that is incorporated into the live show's visuals. People will be able to experience a show live in person but also online as an avatar. It'll be similar to our previous show - Home X - and based in the same universe - possibly.</p>
+            <p>Everything is very new and fluid at the moment. Follow along!</p>
         </div>
-    </header>
-    <section class="hero">
-        <h1>Welcome to IGProjects</h1>
-        <p>Exploring AI and Arts Technology demos.</p>
-    </section>
-    <section class="cards" id="card-grid"></section>
-    <footer>
-        &copy; 2023 IGProjects. Demo content only.
-    </footer>
-    <script type="module" src="/index.js"></script>
+        <div class="search-bar">
+            <input type="search" placeholder="Search posts" />
+        </div>
+        <!-- <section class="hero">
+            <h1>Welcome to IGProjects</h1>
+            <p>Exploring AI and Arts Technology demos.</p>
+        </section> -->
+        <section class="cards" id="card-grid"></section>
+        <script type="module" src="/index.js"></script>
+    </div>
 </body>
 </html>

@@ -31,6 +31,7 @@ header.site-header h1 {
 .search-bar {
     flex: 1;
     margin-left: 2rem;
+    margin-right: 2rem;
 }
 input[type="search"] {
     width: 100%;
@@ -288,3 +289,9 @@ header.site-header {
     height:35px;
     width:auto;
   }
+.front-page-container {
+    margin: 40px 40px;
+}
+.intro-text {
+    padding: 20px 34px;
+}
