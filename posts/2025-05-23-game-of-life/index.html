@@ -18,13 +18,13 @@
 <body>
   <site-header brand="My Blog" sticky></site-header>
 
-  <div class="page-info-panel">
-    <p>This is a first attempt at a simulation using compute shaders and Three.js. It's a simple implementation of Conway's Game of Life. <br/>The simulation is rendered to a texture, which is then used as a source for the display shader. 
+  <info-box>
+    <p>This is a first attempt at a simulation using compute shaders and Three.js. It's a simple implementation of Conway's Game of Life. <br/>The simulation is rendered to a texture, which is then used as a source for the display shader.
     <br/>This is almost entirely vibe coded with Cursor and Codex.</p>
     <p>Zoom with the mouse wheel, and click and drag to move around.</p>
-  </div>
+  </info-box>
 
-  <div id="controls-panel">
+  <control-box>
     <button id="toggle-info-button">Toggle Info</button>
     <button id="reset-button">Reset</button>
     <label for="size-input">Grid Size:</label>
@@ -33,9 +33,9 @@
     <label for="speed-slider">Speed:</label>
     <input type="range" id="speed-slider" min="0" max="20" value="10" step="1">
     <span id="speed-display">1.0x</span>
-  </div>
+  </control-box>
 
-  <canvas id="life-canvas" class="full-viewport-canvas"></canvas>
+  <three-display manual canvas-id="life-canvas"></three-display>
   <site-footer></site-footer>
 
   <script type="module">
@@ -75,7 +75,8 @@
       simulationGridHeight: currentSimGridSize,
     };
 
-    initSimulationEngine(simulationConfig);
+    await customElements.whenDefined('three-display');
+    requestAnimationFrame(() => initSimulationEngine(simulationConfig));
 
     // UI Controls Logic
     const resetButton = document.getElementById('reset-button');
@@ -140,25 +141,11 @@
     const toggleInfoButton = document.getElementById('toggle-info-button');
 
     if (pageInfoPanel && toggleInfoButton) {
-      // Initially visible, or set to 'block' if you prefer to control via JS
-      // pageInfoPanel.style.display = 'block'; 
-
       toggleInfoButton.addEventListener('click', function() {
         if (pageInfoPanel.style.display === 'none') {
           pageInfoPanel.style.display = 'block';
         } else {
           pageInfoPanel.style.display = 'none';
-        }
-      });
-
-      document.addEventListener('click', function(event) {
-        if (pageInfoPanel.style.display !== 'none') { // Only act if panel is visible
-          const isClickInsidePanel = pageInfoPanel.contains(event.target);
-          const isClickOnToggleButton = toggleInfoButton.contains(event.target);
-          
-          if (!isClickInsidePanel && !isClickOnToggleButton) {
-            pageInfoPanel.style.display = 'none';
-          }
         }
       });
     }
