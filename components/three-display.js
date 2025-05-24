@@ -42,7 +42,16 @@ customElements.define('three-display', class extends HTMLElement {
       const initName = this.getAttribute('init') || 'default';
       const initFn = mod[initName];
       if (typeof initFn === 'function') {
-        updateFn = initFn({ scene, camera, renderer, canvas, controls }) || null;
+        // Call the init; it may be sync or async
+        const maybePromise = initFn({ scene, camera, renderer, canvas, controls });
+
+        // Await if a promise, otherwise keep the value
+        updateFn = (maybePromise && typeof maybePromise.then === 'function')
+          ? await maybePromise
+          : maybePromise;
+
+        // Fallback: accept only real functions
+        if (typeof updateFn !== 'function') updateFn = null;
       }
     }
 

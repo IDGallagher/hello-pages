@@ -199,17 +199,18 @@ site-footer { /* Styles for the custom site-footer element, originally from game
 /* End of styles from posts/2025-05-23-game-of-life/index.html */
 
 .page-info-panel {
+  display: block; /* Ensure the component behaves as a block-level element */
   background-color: rgba(40, 40, 40, 0.85); /* Slightly different from controls for distinction */
   color: #f0f0f0; /* Light grey text */
   padding: 8px;
-  margin: 10px auto; /* Margin top/bottom and auto for left/right to center block */
   width: 80%; /* Or max-width as preferred */
   max-width: 900px; /* Max width for readability on wider screens */
+  margin: 10px auto; /* Margin top/bottom and auto for left/right to center block */
   border-radius: 5px;
   text-align: justify; /* Justify text for a blocky look */
   font-size: 0.95rem;
   line-height: 1.6;
-  padding-bottom: 0px;
+  padding-bottom: 8px; /* Adjusted padding */
 }
 
 .page-info-panel p {
