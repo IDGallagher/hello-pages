@@ -8,62 +8,25 @@
 
   <!-- Three.js import map -->
   <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/examples/": "https://unpkg.com/three@0.160.0/examples/"
+        }
       }
-    }
   </script>
 
-  <style>
-    /* Full-screen canvas */
-    #sphere-canvas{
-      display:block;
-      width:100vw;
-      height:100vh;
-      position:fixed;
-      top:0;
-      left:0;
-      z-index:-1;
-    }
-  </style>
 </head>
 
 <body>
   <site-header brand="My Blog" sticky></site-header>
 
-  <div class="page-info-panel">
+  <info-box>
     <p>This demo maps a custom fragment shader onto a rotating sphere using Three.js.
        Use it as a starting point for more advanced shader experiments.</p>
-  </div>
+  </info-box>
 
-  <canvas id="sphere-canvas"></canvas>
+  <three-display canvas-id="sphere-canvas" module="./rotating-sphere.js" init="initRotatingSphere"></three-display>
   <site-footer></site-footer>
-
-  <script type="module">
-    import { initRotatingSphere } from './rotating-sphere.js';
-    initRotatingSphere();
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const pageInfoPanel = document.querySelector('.page-info-panel');
-
-      if (pageInfoPanel) {
-        // Optional: Ensure panel is visible by default if not set by CSS
-        // pageInfoPanel.style.display = 'block'; 
-
-        document.addEventListener('click', function(event) {
-          // Hide the panel if it's visible and the click is outside of it
-          if (pageInfoPanel.style.display !== 'none') {
-            const isClickInsidePanel = pageInfoPanel.contains(event.target);
-            if (!isClickInsidePanel) {
-              pageInfoPanel.style.display = 'none';
-            }
-          }
-        });
-      }
-    });
-  </script>
 </body>
 </html> 
