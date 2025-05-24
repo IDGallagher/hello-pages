@@ -230,9 +230,9 @@ site-footer { /* Styles for the custom site-footer element, originally from game
   background-color: rgba(20, 20, 20, 0.85); /* Slightly different from controls for distinction */
   color: #f0f0f0; /* Light grey text */
   padding: 8px;
-  width: 60%; /* Or max-width as preferred */
+  width: 80%; /* Or max-width as preferred */
   max-width: 900px; /* Max width for readability on wider screens */
-  margin: 120px 20px 0px auto; /* Margin top/bottom and auto for left/right to center block */
+  margin: 60px 20px 0px auto; /* Margin top/bottom and auto for left/right to center block */
   border-radius: 5px;
   text-align: justify; /* Justify text for a blocky look */
   font-size: 0.95rem;
