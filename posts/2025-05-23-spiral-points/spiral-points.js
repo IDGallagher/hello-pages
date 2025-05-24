@@ -21,7 +21,8 @@ export async function initSpiralPoints () {
   camera.position.z = 3;
 
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableRotate       = true;
+  controls.enableRotate       = false;
+  controls.mouseButtons.LEFT  = THREE.MOUSE.PAN;
   controls.screenSpacePanning = true;
   controls.enableDamping      = true;
   controls.dampingFactor      = 0.05;
