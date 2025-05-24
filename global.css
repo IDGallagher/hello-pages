@@ -165,15 +165,24 @@ site-footer { /* Styles for the custom site-footer element, originally from game
   left: 0; /* Align to the left */
   width: 100%; /* Full width */
   z-index: 10; /* Ensure it's above other elements like the original footer */
-  background-color: rgba(30, 30, 30, 0.85); /* Darker, slightly more opaque background */
-  padding: 10px;
+  background-color: rgba(20, 20, 20, 0.85); /* Darker, slightly more opaque background */
+  padding-bottom: 30px;
   border-radius: 0; /* No border-radius for a full-width bar */
   display: flex;
+  flex-direction: column; /* Stack items vertically */
   align-items: center;
   justify-content: center; /* Center controls */
   flex-wrap: wrap; /* Allow controls to wrap on smaller screens */
-  gap: 10px;
   box-shadow: 0 -2px 5px rgba(0,0,0,0.2); /* Optional: add a subtle shadow on top */
+}
+
+.actual-controls-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* This will space out the individual controls in the row */
+  width: 100%; /* Ensure the group can take up space if needed */
 }
 
 .controls-bar label {
@@ -218,12 +227,12 @@ site-footer { /* Styles for the custom site-footer element, originally from game
 
 .page-info-panel {
   display: block; /* Ensure the component behaves as a block-level element */
-  background-color: rgba(40, 40, 40, 0.85); /* Slightly different from controls for distinction */
+  background-color: rgba(20, 20, 20, 0.85); /* Slightly different from controls for distinction */
   color: #f0f0f0; /* Light grey text */
   padding: 8px;
   width: 80%; /* Or max-width as preferred */
   max-width: 900px; /* Max width for readability on wider screens */
-  margin: 10px auto; /* Margin top/bottom and auto for left/right to center block */
+  margin: 80px auto 0px auto; /* Margin top/bottom and auto for left/right to center block */
   border-radius: 5px;
   text-align: justify; /* Justify text for a blocky look */
   font-size: 0.95rem;
