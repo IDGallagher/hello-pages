@@ -3,7 +3,6 @@
     "slug": "2025-05-23-spiral-points",
     "title": "Tweet-Length Spiral Points",
     "subtitle": "30 k instanced points driven entirely by a vertex-shader",
-    "cover": "/posts/2025-05-23-spiral-points/cover.png",
     "date": "2025-05-23",
     "tags": ["demo", "three.js"]
   },
@@ -11,7 +10,6 @@
     "slug": "2025-05-23-rotating-sphere",
     "title": "Rotating Sphere Shader",
     "subtitle": "A basic Three.js shader demo",
-    "cover": "/posts/2025-05-23-rotating-sphere/sphere.png",
     "date": "2025-05-23",
     "tags": ["demo", "three.js"]
   },
@@ -19,7 +17,6 @@
     "slug": "2025-05-23-game-of-life",
     "title": "Conway's Game of Life",
     "subtitle": "A Hello World for doing simulations on the GPU",
-    "cover": "/posts/2025-05-23-game-of-life/life.png",
     "date": "2025-05-23",
     "tags": ["demo", "three.js"]
   },

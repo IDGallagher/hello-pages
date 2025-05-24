@@ -45,8 +45,9 @@ function makeCard({ slug, title, subtitle, cover, date }) {
   const a = document.createElement("a");
   a.href  = `/posts/${slug}/`;
   a.className = "card";
+  const imageSrc = cover ? cover : `/posts/${slug}/cover.png`;
   a.innerHTML = `
-      <img src="${cover}" alt="${title}">
+      <img src="${imageSrc}" alt="${title}">
       <div class="card-body">
         <p class="date">${new Date(date).toLocaleDateString()}</p>
         <h3>${title}</h3>
