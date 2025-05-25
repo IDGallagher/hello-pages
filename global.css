@@ -309,3 +309,31 @@ header.site-header {
     background-color: black;
     z-index: -1; /* Ensure it's behind other header content */
 }
+/* Styles for spiral points controls */
+.controls-bar button {
+  margin-left: .5rem;
+  padding: .1rem .6rem;
+  background: #222;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: .3rem;
+  cursor: pointer;
+}
+
+.controls-bar button:disabled { 
+  opacity: .35; 
+  cursor: default; 
+}
+
+#eq-label { 
+  margin-left: .6rem; 
+  font-weight: 700; 
+}
+
+/* Info-box links: clickable, bold, inherit colour, no underline */
+.page-info-panel a {
+  pointer-events: auto;     /* clickable even if parent has pointer-events:none */
+  font-weight: bold;
+  color: inherit;           /* same colour as surrounding text */
+  text-decoration: none;    /* remove underline */
+}

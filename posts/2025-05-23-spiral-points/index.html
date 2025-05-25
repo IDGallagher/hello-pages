@@ -1,53 +1,28 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="utf-8" />
-  <title>Loading…</title>
-  
-  <!-- Favicon links -->
-  <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
-  <link rel="icon" type="image/png" href="/assets/favicon/web-app-manifest-192x192.png">
-  <link rel="apple-touch-icon" href="/assets/favicon/web-app-manifest-192x192.png">
-  <link rel="manifest" href="/assets/favicon/site.webmanifest">
-  
-  <link rel="stylesheet" href="/global.css" />
   <script type="module" src="/post-init.js"></script>
   <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-        "three/examples/": "https://unpkg.com/three@0.160.0/examples/"
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/examples/": "https://unpkg.com/three@0.160.0/examples/"
+        }
       }
-    }
   </script>
-  <style>
-    .controls-bar button{
-      margin-left:.5rem;
-      padding:.1rem .6rem;
-      background:#222;
-      color:#fff;
-      border:1px solid #555;
-      border-radius:.3rem;
-      cursor:pointer;
-    }
-    .controls-bar button:disabled{ opacity:.35; cursor:default; }
-    #eq-label{ margin-left:.6rem; font-weight:700; }
-  </style>
 </head>
 
 <body>
   <site-header sticky></site-header>
 
   <info-box class="spiral-specific-info-panel">
-    <p>This demo re-creates a tweet-length Processing sketch as a GPU point-cloud shader in Three.js.
-    All 30 000 vertices are positioned in the vertex-shader each frame, faithfully matching the original equation. Zoom with the mouse-wheel and click-drag to pan around.</p>
+    <p>I love the creatures that <a href="https://x.com/yuruyurau" target="_blank">@yuruyurau</a> has created with a bunch of trigonometric functions. They kindly shared the equations on twitter so I translated them to three.js shaders. Something like this could really work in Underwater, particularly for the dark scenes maybe, or when zooming in to plankton.</p>
   </info-box>
 
   <control-box>
     <label>
       Point size
-      <input type="range" id="point-size" min="1" max="20" step="0.5" value="8">
+      <input type="range" id="point-size" min="1" max="20" step="0.5" value="5">
     </label>
     <label>
       Speed
