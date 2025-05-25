@@ -4,28 +4,20 @@
     "title": "Tweet-Length Spiral Points",
     "subtitle": "30 k instanced points driven entirely by a vertex-shader",
     "date": "2025-05-23",
-    "tags": ["demo", "three.js"]
+    "tags": ["alife", "underwater"]
   },
   {
     "slug": "2025-05-23-rotating-sphere",
     "title": "Rotating Sphere Shader",
     "subtitle": "A basic Three.js shader demo",
     "date": "2025-05-23",
-    "tags": ["demo", "three.js"]
+    "tags": ["demo", "shader"]
   },
   {
-    "slug": "2025-05-23-game-of-life",
+    "slug": "2025-05-22-game-of-life",
     "title": "Conway's Game of Life",
     "subtitle": "A Hello World for doing simulations on the GPU",
-    "date": "2025-05-23",
-    "tags": ["demo", "three.js"]
-  },
-  {
-    "slug": "2025-05-22-hello",
-    "title": "Hello World",
-    "subtitle": "Kicking off the blog",
-    "cover": "https://picsum.photos/seed/hello/400/300",
     "date": "2025-05-22",
-    "tags": ["intro", "meta"]
+    "tags": ["alife", "shader"]
   }
 ]

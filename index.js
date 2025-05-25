@@ -41,17 +41,21 @@ function handleSearch(e) {
   }
 }
 
-function makeCard({ slug, title, subtitle, cover, date }) {
+function makeCard({ slug, title, subtitle, cover, date, tags }) {
   const a = document.createElement("a");
   a.href  = `/posts/${slug}/`;
   a.className = "card";
   const imageSrc = cover ? cover : `/posts/${slug}/cover.png`;
+  const tagsHtml = tags ? tags.map(tag => `<span class="tag">${tag}</span>`).join('') : '';
   a.innerHTML = `
       <img src="${imageSrc}" alt="${title}">
       <div class="card-body">
         <p class="date">${new Date(date).toLocaleDateString()}</p>
         <h3>${title}</h3>
         <p>${subtitle}</p>
+        <div class="tags-container">
+          ${tagsHtml}
+        </div>
       </div>`;
   return a;
 }
