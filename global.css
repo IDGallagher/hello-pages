@@ -263,7 +263,7 @@ header.site-header {
     position: fixed; /* Make it float */
     top: 0; /* Align to the top */
     left: 0; /* Align to the left */
-    width: 100%; /* Make it span the full width */
+    width: 96%; /* Make it span the full width */
     /* z-index: -99; */
     display:flex;
     align-items:center;
@@ -294,7 +294,7 @@ header.site-header {
     background:black;
   }
 .front-page-container {
-    margin: 20px 40px;
+    margin: 30px 40px;
 }
 .intro-text {
     padding: 20px 34px;
@@ -305,7 +305,7 @@ header.site-header {
     top: 0;
     left: 0;
     width: 100%;
-    height: 50px;
+    height: 60px;
     background-color: black;
     z-index: -1; /* Ensure it's behind other header content */
 }
