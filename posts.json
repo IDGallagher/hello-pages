@@ -1,23 +1,42 @@
 [
   {
+    "slug": "2025-05-26-shadertoy-demo",
+    "title": "Shadertoy slGGzD Recreation",
+    "subtitle": "Exploring a swirling shader in our custom component",
+    "date": "2025-05-26",
+    "tags": [
+      "demo",
+      "shader"
+    ]
+  },
+  {
     "slug": "2025-05-23-spiral-points",
     "title": "Trigonometric Underwater Creatures",
     "subtitle": "Amazing mathematical animals by @yuruyurau on twitter",
     "date": "2025-05-23",
-    "tags": ["alife", "underwater"]
+    "tags": [
+      "alife",
+      "underwater"
+    ]
   },
   {
     "slug": "2025-05-23-rotating-sphere",
     "title": "Rotating Sphere Shader",
     "subtitle": "A basic Three.js shader demo",
     "date": "2025-05-23",
-    "tags": ["demo", "shader"]
+    "tags": [
+      "demo",
+      "shader"
+    ]
   },
   {
     "slug": "2025-05-22-game-of-life",
     "title": "Conway's Game of Life",
     "subtitle": "A Hello World for doing simulations on the GPU",
     "date": "2025-05-22",
-    "tags": ["alife", "shader"]
+    "tags": [
+      "alife",
+      "shader"
+    ]
   }
 ]

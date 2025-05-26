@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script type="module" src="/post-init.js"></script>
+  <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/examples/": "https://unpkg.com/three@0.160.0/examples/"
+        }
+      }
+  </script>
+</head>
+
+<body>
+  <site-header sticky></site-header>
+
+  <info-box>
+    <p>This post recreates the <a href="https://www.shadertoy.com/view/slGGzD" target="_blank">slGGzD</a> shader using a GPU simulation.</p>
+  </info-box>
+
+  <three-display manual canvas-id="slggzd-canvas"></three-display>
+  <script type="module" src="./slggzd.js"></script>
+</body>
+</html>
